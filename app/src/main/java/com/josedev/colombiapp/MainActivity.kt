@@ -1,11 +1,13 @@
 package com.josedev.colombiapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,8 +35,9 @@ class MainActivity : ComponentActivity() {
                     var text by remember { mutableStateOf("Loading") }
                     LaunchedEffect(true) {
                         scope.launch {
+                            Log.d("GREET", "GREET ${GreetingImpl().colombia().data?.name}")
                             text = try {
-                                GreetingImpl().greeting()
+                                if(GreetingImpl().colombia().data != null)  GreetingImpl().colombia().data?.name!! else "N"
                             } catch (e: Exception){
                                 e.localizedMessage ?: "error"
                             }

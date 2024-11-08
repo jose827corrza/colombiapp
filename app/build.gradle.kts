@@ -70,4 +70,6 @@ dependencies {
     implementation(libs.ktor.client.okhttp)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.gson)
 }
