@@ -1,5 +1,7 @@
 package com.josedev.colombiapp.client.responses
 
+import com.josedev.colombiapp.domain.state.ColombiaState
+
 data class Colombia (
     val id: Long,
     val name: String,
@@ -21,4 +23,27 @@ data class Colombia (
     val region: String,
     val borders: List<String>,
     val flags: List<String>
+)
+
+fun Colombia.toColombiaState() = ColombiaState(
+    id = id,
+    name = name,
+    description = description,
+    stateCapital = stateCapital,
+    surface = surface,
+    population = population,
+    languages = languages,
+    timeZone = timeZone,
+    currency = currency,
+    currencyCode = currencyCode,
+    currencySymbol = currencySymbol,
+    isoCode = isoCode,
+    internetDomain = internetDomain,
+    phonePrefix = phonePrefix,
+    radioPrefix = radioPrefix,
+    aircraftPrefix = aircraftPrefix,
+    subRegion = subRegion,
+    region = region,
+    borders = borders,
+    flags = flags
 )
