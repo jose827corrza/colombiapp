@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,11 +50,12 @@ fun PreviewCard(
             modifier =modifier.padding(10.dp).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if(image != null){
+            if(image != "null"){
                 AsyncImage(
-                    model = "https://upload.wikimedia.org/wikipedia/commons/d/db/Rafael_Nunez.JPG",
+                    model = image,
                     contentDescription = "Rafael Nunez",
-                    modifier = modifier.clip(CircleShape).size(60.dp).background(Color.LightGray)
+                    contentScale = ContentScale.FillWidth,
+                    modifier = modifier.size(60.dp).clip(CircleShape).background(Color.LightGray)
                 )
             } else {
                 Image(
@@ -70,7 +72,7 @@ fun PreviewCard(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "$startPeriod $endPeriod",
+                    text = "$startPeriod     ${endPeriod ?: ""}", // TODO avoid to show null instead of  empty string
                     fontWeight = FontWeight.Normal,
                     fontSize = 10.sp
                 )

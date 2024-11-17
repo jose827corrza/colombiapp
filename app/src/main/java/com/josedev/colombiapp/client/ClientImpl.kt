@@ -3,6 +3,7 @@ package com.josedev.colombiapp.client
 import android.util.Log
 import com.josedev.colombiapp.client.responses.Colombia
 import com.josedev.colombiapp.client.responses.Department
+import com.josedev.colombiapp.client.responses.President
 import com.josedev.colombiapp.client.responses.Region
 import com.josedev.colombiapp.utils.Constants
 import com.josedev.colombiapp.utils.Resource
@@ -56,13 +57,30 @@ class ClientImpl: Client {
         } catch (e: Exception){
             return Resource.Error(e.message.toString())
         }
-        Log.d("ClientImpl", "RESPONSE: ${response.body<Region>()}")
         return Resource.Success(response.body())
     }
 
     override suspend fun stateDetailById(id: String): Resource<Department> {
         val response = try {
             client.get(Constants.BASE_URL + Constants.DEPARTMENT_WITH_ID + "/$id")
+        }catch (e: Exception){
+            return Resource.Error(e.message.toString())
+        }
+        return Resource.Success(response.body())
+    }
+
+    override suspend fun listOfPresidents(): Resource<List<President>> {
+        val response = try {
+            client.get(Constants.PRESIDENTS)
+        }catch (e: Exception){
+            return Resource.Error(e.message.toString())
+        }
+        return Resource.Success(response.body())
+    }
+
+    override suspend fun presidentDetailById(id: String): Resource<President> {
+        val response = try {
+            client.get(Constants.PRESIDENTS + "/$id")
         }catch (e: Exception){
             return Resource.Error(e.message.toString())
         }

@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.josedev.colombiapp.navigation.routes.AppRoute
 import com.josedev.colombiapp.screens.ColombiaScreen
+import com.josedev.colombiapp.screens.PresidentDetailsScreen
+import com.josedev.colombiapp.screens.PresidentsScreen
 import com.josedev.colombiapp.screens.RegionDetailsScreen
 import com.josedev.colombiapp.screens.RegionsScreen
 import com.josedev.colombiapp.screens.StateDetailScreen
@@ -27,6 +29,9 @@ fun AppNavigation(
         composable(AppRoute.Regions().route){
             RegionsScreen(navigation)
         }
+        composable(AppRoute.Presidents().route){
+            PresidentsScreen(navigation)
+        }
         composable(AppRoute.Regions().route){
             RegionsScreen(navigation)
         }
@@ -35,6 +40,9 @@ fun AppNavigation(
         }
         composable(AppRoute.StateDetailByIdStatic().route){
             StateDetailScreen(navigation, it.arguments?.getString("id")!!)
+        }
+        composable(AppRoute.PresidentDetailByIdStatic().route){
+            PresidentDetailsScreen(navigation, it.arguments?.getString("id")!!)
         }
     }
 

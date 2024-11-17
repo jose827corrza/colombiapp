@@ -112,7 +112,18 @@ fun NavDrawerSheet(
                     navigation.navigate(AppRoute.Regions().route)
                     drawerState.close()
                 }
-            })
+            }
+        )
+        NavigationDrawerItem(
+            label = { Text(text = "Presidents") },
+            selected = false,
+            onClick = {
+                scope.launch {
+                    navigation.navigate(AppRoute.Presidents().route)
+                    drawerState.close()
+                }
+            }
+        )
     }
 }
 
