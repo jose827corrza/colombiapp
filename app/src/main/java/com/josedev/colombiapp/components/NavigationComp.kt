@@ -93,7 +93,7 @@ fun NavDrawerSheet(
     drawerState: DrawerState
 ) {
     ModalDrawerSheet {
-        Text(text = "ColombiApp", modifier = Modifier.padding(18.dp), fontWeight = FontWeight.Bold, fontSize = 18.sp)
+        Text(text = "ColombiApp", modifier = Modifier.padding(18.dp), fontWeight = FontWeight.ExtraBold, fontSize = 18.sp)
         HorizontalDivider()
         NavigationDrawerItem(
             label = { Text(text = "Colombia") },
@@ -120,6 +120,32 @@ fun NavDrawerSheet(
             onClick = {
                 scope.launch {
                     navigation.navigate(AppRoute.Presidents().route)
+                    drawerState.close()
+                }
+            }
+        )
+        HorizontalDivider()
+        Text(text = "Tourism", modifier = Modifier.padding(18.dp), fontWeight = FontWeight.Bold, fontSize = 18.sp)
+        HorizontalDivider()
+        NavigationDrawerItem(
+            label = { Text(text = "Touristic Attractions") },
+            selected = false,
+            onClick = {
+                scope.launch {
+                    navigation.navigate(AppRoute.TouristicAttractions().route)
+                    drawerState.close()
+                }
+            }
+        )
+        HorizontalDivider()
+        Text(text = "About", modifier = Modifier.padding(18.dp), fontWeight = FontWeight.Bold, fontSize = 18.sp)
+        HorizontalDivider()
+        NavigationDrawerItem(
+            label = { Text(text = "Special Thanks") },
+            selected = false,
+            onClick = {
+                scope.launch {
+                    navigation.navigate(AppRoute.Thanks().route)
                     drawerState.close()
                 }
             }

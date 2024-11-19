@@ -14,6 +14,9 @@ import com.josedev.colombiapp.screens.PresidentsScreen
 import com.josedev.colombiapp.screens.RegionDetailsScreen
 import com.josedev.colombiapp.screens.RegionsScreen
 import com.josedev.colombiapp.screens.StateDetailScreen
+import com.josedev.colombiapp.screens.ThanksScreen
+import com.josedev.colombiapp.screens.TouristicADetailScreen
+import com.josedev.colombiapp.screens.TouristicAttractionsScreen
 import javax.inject.Inject
 
 @Composable
@@ -23,6 +26,9 @@ fun AppNavigation(
 
 
     NavHost(navController = navigation, startDestination = AppRoute.Colombia().route){
+        composable(AppRoute.Thanks().route){
+            ThanksScreen()
+        }
         composable(AppRoute.Colombia().route){
             ColombiaScreen()
         }
@@ -31,6 +37,9 @@ fun AppNavigation(
         }
         composable(AppRoute.Presidents().route){
             PresidentsScreen(navigation)
+        }
+        composable(AppRoute.TouristicAttractions().route){
+            TouristicAttractionsScreen(navigation)
         }
         composable(AppRoute.Regions().route){
             RegionsScreen(navigation)
@@ -43,6 +52,9 @@ fun AppNavigation(
         }
         composable(AppRoute.PresidentDetailByIdStatic().route){
             PresidentDetailsScreen(navigation, it.arguments?.getString("id")!!)
+        }
+        composable(AppRoute.TouristicAttractionsByIdStatic().route){
+            TouristicADetailScreen(navigation, it.arguments?.getString("id")!!)
         }
     }
 

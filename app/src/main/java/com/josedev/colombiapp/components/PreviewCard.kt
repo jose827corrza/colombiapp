@@ -53,14 +53,14 @@ fun PreviewCard(
             if(image != "null"){
                 AsyncImage(
                     model = image,
-                    contentDescription = "Rafael Nunez",
+                    contentDescription = "Image from API for $title",
                     contentScale = ContentScale.FillWidth,
                     modifier = modifier.size(60.dp).clip(CircleShape).background(Color.LightGray)
                 )
             } else {
                 Image(
                     painter = painterResource(id = R.mipmap.ic_launcher),
-                    contentDescription = "xd",
+                    contentDescription = "Default image",
                     modifier = modifier.clip(CircleShape).size(60.dp).background(Color.LightGray)
                 )
             }

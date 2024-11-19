@@ -8,4 +8,5 @@ object Constants {
     const val DEPARTMENT = "/departments"
     const val DEPARTMENT_WITH_ID = "/Department"
     const val PRESIDENTS = "$BASE_URL/President"
+    const val TOURISTIC_ATTRACTIONS = "$BASE_URL/TouristicAttraction"
 }

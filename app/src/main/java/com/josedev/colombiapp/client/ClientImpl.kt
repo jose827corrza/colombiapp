@@ -5,6 +5,7 @@ import com.josedev.colombiapp.client.responses.Colombia
 import com.josedev.colombiapp.client.responses.Department
 import com.josedev.colombiapp.client.responses.President
 import com.josedev.colombiapp.client.responses.Region
+import com.josedev.colombiapp.client.responses.TouristAttraction
 import com.josedev.colombiapp.utils.Constants
 import com.josedev.colombiapp.utils.Resource
 import dagger.Module
@@ -81,6 +82,24 @@ class ClientImpl: Client {
     override suspend fun presidentDetailById(id: String): Resource<President> {
         val response = try {
             client.get(Constants.PRESIDENTS + "/$id")
+        }catch (e: Exception){
+            return Resource.Error(e.message.toString())
+        }
+        return Resource.Success(response.body())
+    }
+
+    override suspend fun touristicAttractions(): Resource<List<TouristAttraction>> {
+        val response = try {
+            client.get(Constants.TOURISTIC_ATTRACTIONS)
+        }catch (e: Exception){
+            return Resource.Error(e.message.toString())
+        }
+        return Resource.Success(response.body())
+    }
+
+    override suspend fun touristicAttractionsById(id: String): Resource<TouristAttraction> {
+        val response = try {
+            client.get(Constants.TOURISTIC_ATTRACTIONS + "/${id}")
         }catch (e: Exception){
             return Resource.Error(e.message.toString())
         }
