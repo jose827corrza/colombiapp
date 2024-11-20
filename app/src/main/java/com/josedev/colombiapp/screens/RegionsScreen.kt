@@ -28,7 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.josedev.colombiapp.components.PreviewCard
+import com.josedev.colombiapp.components.TrackScreen
 import com.josedev.colombiapp.domain.repository.DepartmentsByRegionIdEvent
 import com.josedev.colombiapp.domain.repository.RegionsEvent
 import com.josedev.colombiapp.domain.state.RegionState
@@ -38,6 +40,7 @@ import com.josedev.colombiapp.presentation.RegionsVM
 
 @Composable
 fun RegionsScreen(
+    analytics: FirebaseAnalytics,
     navigation: NavHostController,
     modifier: Modifier = Modifier,
     vm: RegionsVM = hiltViewModel(),
@@ -46,6 +49,7 @@ fun RegionsScreen(
     val state by vm.state.collectAsState()
     val status by vm.status.collectAsState()
 
+    TrackScreen(name = "regions-screen", analytics = analytics)
 
     Column(
         modifier = modifier.fillMaxSize()

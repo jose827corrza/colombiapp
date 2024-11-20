@@ -23,11 +23,18 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.josedev.colombiapp.components.TrackScreen
 import com.josedev.colombiapp.utils.Utils
 
 @Composable
-fun ThanksScreen(modifier: Modifier = Modifier) {
+fun ThanksScreen(
+    analytics: FirebaseAnalytics,
+    modifier: Modifier = Modifier) {
     val context = LocalContext.current
+
+    TrackScreen(name = "thanks-screen", analytics = analytics)
+
     Column(
         modifier = modifier
             .fillMaxSize(),
@@ -36,7 +43,9 @@ fun ThanksScreen(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = "Thanks",
-            modifier = modifier.fillMaxWidth().padding(0.dp, 0.dp, 0.dp, 30.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 30.dp),
             textAlign = TextAlign.Center,
             fontSize = 28.sp,
             fontWeight = FontWeight.ExtraBold

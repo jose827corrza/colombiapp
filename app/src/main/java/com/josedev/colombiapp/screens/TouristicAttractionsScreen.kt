@@ -13,12 +13,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.josedev.colombiapp.components.PreviewCard
+import com.josedev.colombiapp.components.TrackScreen
 import com.josedev.colombiapp.navigation.routes.AppRoute
 import com.josedev.colombiapp.presentation.TouristicAttractionsVM
 
 @Composable
 fun TouristicAttractionsScreen(
+    analytics: FirebaseAnalytics,
     navigation: NavHostController,
     modifier: Modifier = Modifier,
     vm: TouristicAttractionsVM = hiltViewModel()
@@ -26,6 +29,8 @@ fun TouristicAttractionsScreen(
 
     val state by vm.state.collectAsState()
     val status by vm.status.collectAsState()
+
+    TrackScreen(name = "touristic-attraction", analytics = analytics)
 
     if(status.isLoading){
         Box(
