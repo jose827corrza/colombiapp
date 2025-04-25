@@ -8,18 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -31,11 +24,7 @@ import androidx.navigation.NavHostController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.josedev.colombiapp.components.PreviewCard
 import com.josedev.colombiapp.components.TrackScreen
-import com.josedev.colombiapp.domain.repository.DepartmentsByRegionIdEvent
-import com.josedev.colombiapp.domain.repository.RegionsEvent
-import com.josedev.colombiapp.domain.state.RegionState
 import com.josedev.colombiapp.navigation.routes.AppRoute
-import com.josedev.colombiapp.presentation.DepartmentsByRegionId
 import com.josedev.colombiapp.presentation.RegionsVM
 
 @Composable
@@ -74,13 +63,13 @@ fun RegionsScreen(
                 verticalArrangement = Arrangement.spacedBy(space = 5.dp),
             ) {
                 items(state){
-                    PreviewCard(title = it.name, goTo = { navToDetailsFun(it.id, navigation) })
+                    PreviewCard(title = it.name, goTo = { navToRegionStatesList(it.id, navigation) })
                 }
             }
         }
     }
 }
 
-fun navToDetailsFun(id: Long, nav: NavHostController){
+fun navToRegionStatesList(id: Long, nav: NavHostController){
     nav.navigate(AppRoute.DepartmentsByRegionId(id).route)
 }

@@ -47,7 +47,7 @@ fun TouristicAttractionsScreen(
                     startPeriod = "",
                     endPeriod = "",
                     title = it.name,
-                    image = it.images[0],
+                    image = it.images.firstOrNull(),
                     goTo = { goToTouristicADetail(navigation, it.id) }
                 )
             }

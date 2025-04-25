@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,9 +59,41 @@ fun RegionDetailsScreen(
                 CircularProgressIndicator()
             }
         } else {
-            RegionInfo(state, navigation)
+//            RegionInfo(state, navigation)
+            Column(
+                modifier = modifier.fillMaxSize()
+            ) {
+                if(status.isLoading){
+                    Box(
+                        modifier = modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Log.d("RegionsScreen", "Circular: $state")
+                        CircularProgressIndicator()
+                    }
+                } else {
+                    Text(
+                        text = "Regions",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = modifier.fillMaxWidth()
+                    )
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(space = 5.dp),
+                    ) {
+                        items(state){
+                            PreviewCard(title = it.name, goTo = { navToStateDetail(it.id, navigation) })
+                        }
+                    }
+                }
+            }
         }
     }
+}
+
+fun navToStateDetail(id: Long, nav: NavHostController){
+    nav.navigate(AppRoute.StateDetailById(id).route)
 }
 
 @Composable
