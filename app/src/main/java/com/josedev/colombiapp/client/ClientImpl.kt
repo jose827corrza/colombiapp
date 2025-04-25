@@ -52,9 +52,9 @@ class ClientImpl: Client {
         return Resource.Success(response.body())
     }
 
-    override suspend fun statesByRegionId(id: String): Resource<Region> {
+    override suspend fun statesByRegionId(id: String): Resource<List<Department>> {
         val response = try {
-            client.get(Constants.REGION +"/$id" +Constants.DEPARTMENT)
+            client.get(Constants.REGION +"/$id" + Constants.DEPARTMENT)
         } catch (e: Exception){
             return Resource.Error(e.message.toString())
         }
@@ -94,6 +94,7 @@ class ClientImpl: Client {
         }catch (e: Exception){
             return Resource.Error(e.message.toString())
         }
+        Log.d("ClientImpl", response.body<List<TouristAttraction>>().toString())
         return Resource.Success(response.body())
     }
 

@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.josedev.colombiapp.navigation.routes.AppRoute
 import com.josedev.colombiapp.screens.ColombiaScreen
 import com.josedev.colombiapp.screens.PresidentDetailsScreen
@@ -21,28 +22,26 @@ import javax.inject.Inject
 
 @Composable
 fun AppNavigation(
+    analytics: FirebaseAnalytics,
     navigation: NavHostController,
     modifier: Modifier = Modifier) {
 
 
     NavHost(navController = navigation, startDestination = AppRoute.Colombia().route){
         composable(AppRoute.Thanks().route){
-            ThanksScreen()
+            ThanksScreen(analytics)
         }
         composable(AppRoute.Colombia().route){
-            ColombiaScreen()
+            ColombiaScreen(analytics)
         }
         composable(AppRoute.Regions().route){
-            RegionsScreen(navigation)
+            RegionsScreen(analytics, navigation)
         }
         composable(AppRoute.Presidents().route){
-            PresidentsScreen(navigation)
+            PresidentsScreen(analytics, navigation)
         }
         composable(AppRoute.TouristicAttractions().route){
-            TouristicAttractionsScreen(navigation)
-        }
-        composable(AppRoute.Regions().route){
-            RegionsScreen(navigation)
+            TouristicAttractionsScreen(analytics, navigation)
         }
         composable(AppRoute.DepartmentsByRegionIdStatic().route){
             RegionDetailsScreen(navigation, it.arguments?.getString("id")!!)

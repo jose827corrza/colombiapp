@@ -81,7 +81,7 @@ fun AttractionDetail(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 20.dp),
-            model = state.images[0],
+            model = state.images.firstOrNull(),
             contentDescription = " Touristic Attraction Image: ${state.name}"
         )
     } else{

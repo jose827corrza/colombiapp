@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.josedev.colombiapp.navigation.AppNavigation
 import com.josedev.colombiapp.navigation.routes.AppRoute
 import kotlinx.coroutines.CoroutineScope
@@ -37,7 +38,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavigationComp(modifier: Modifier = Modifier) {
+fun NavigationComp(
+    analytics: FirebaseAnalytics,
+    modifier: Modifier = Modifier) {
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -52,7 +55,7 @@ fun NavigationComp(modifier: Modifier = Modifier) {
             topBar = { TopBar(drawerState, scope) }
         ){ innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)){
-                AppNavigation(navigation)
+                AppNavigation(analytics, navigation)
             }
         }
     }
@@ -151,10 +154,4 @@ fun NavDrawerSheet(
             }
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NavigationCompPreview() {
-    NavigationComp()
 }

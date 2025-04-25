@@ -17,12 +17,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.josedev.colombiapp.components.PreviewCard
+import com.josedev.colombiapp.components.TrackScreen
 import com.josedev.colombiapp.navigation.routes.AppRoute
 import com.josedev.colombiapp.presentation.PresidentsVM
 
 @Composable
 fun PresidentsScreen(
+    analytics: FirebaseAnalytics,
     navigation: NavHostController,
     modifier: Modifier = Modifier,
     vm: PresidentsVM = hiltViewModel()
@@ -30,6 +33,8 @@ fun PresidentsScreen(
 
     val state by vm.state.collectAsState()
     val status by vm.status.collectAsState()
+
+    TrackScreen(name = "presidents-screen", analytics = analytics)
 
     if(status.isLoading){
         Box(

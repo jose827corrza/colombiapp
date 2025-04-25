@@ -12,7 +12,7 @@ interface Client {
     suspend fun greeting(): Resource<String>
     suspend fun colombia(): Resource<Colombia>
     suspend fun region(): Resource<List<Region>>
-    suspend fun statesByRegionId(id: String): Resource<Region>
+    suspend fun statesByRegionId(id: String): Resource<List<Department>>
     suspend fun stateDetailById(id: String): Resource<Department>
     suspend fun listOfPresidents(): Resource<List<President>>
     suspend fun presidentDetailById(id: String): Resource<President>
